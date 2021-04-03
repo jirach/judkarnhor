@@ -6,7 +6,6 @@ import Login from '../Pages/Login/Login';
 
 const App: React.FC = () => (
   <div>
-    
     <Router>
     <Link to="/">Home</Link> <Link to="/login">Login</Link> <Link to="/dashboard">Dashboard</Link>
       <Switch>

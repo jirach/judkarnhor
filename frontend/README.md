@@ -1,3 +1,4 @@
 # Jud Karn Hor
 
-Coming soon
+[x] Add layouts
+[ ] Add material theme

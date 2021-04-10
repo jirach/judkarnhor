@@ -2,7 +2,7 @@ import React from 'react';
 
 const Home: React.FC = () => (
   <div>
-    Home
+    Home Page
   </div>
 );
 

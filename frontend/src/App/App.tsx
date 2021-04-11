@@ -36,7 +36,7 @@ const App: React.FC = () => {
   return (
     <Router history={customHistory}>
       <Switch>
-        <AppRoute exact path="/" needAuthen={false} layout={AppLayout} component={Dashboard} />
+        <AppRoute exact path="/" needAuthen layout={AppLayout} component={Dashboard} />
         <AppRoute exact path="/dashboard" needAuthen layout={AppLayout} component={Dashboard} />
         <AppRoute exact path="/building" needAuthen layout={AppLayout} component={Building} />
         <AppRoute exact path="/report" needAuthen layout={AppLayout} component={Report} />

@@ -9,7 +9,7 @@ const Login: React.FC = () => {
 
   useEffect(() => {
     handleSignout();
-    history.push('/');
+    history.push('/login');
   });
 
   return (

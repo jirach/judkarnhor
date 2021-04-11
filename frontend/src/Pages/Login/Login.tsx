@@ -42,7 +42,7 @@ const Login: React.FC = () => {
         <LockOutlinedIcon />
       </Avatar>
       <Typography component="h1" variant="h5">
-        Sign in
+        Jud Karn Hor
       </Typography>
       <form className={classes.form} noValidate>
         <Button

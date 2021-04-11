@@ -2,7 +2,8 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable react/destructuring-assignment */
 import React, { useState, useEffect } from 'react';
-import firebase from 'firebase';
+import firebase from 'firebase/app';
+import 'firebase/auth';
 import { createBrowserHistory } from 'history';
 import firebaseConfig from '../Firebase/firebaseIndex';
 import UserService from '../Services/UserServices';

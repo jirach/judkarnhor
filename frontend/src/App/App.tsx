@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { Router, Switch } from 'react-router-dom';
-import firebase from 'firebase';
+import firebase from 'firebase/app';
+import 'firebase/auth';
 import Dashboard from '../Pages/Dashboard/Dashboard';
 import Home from '../Pages/Home/Home';
 import Login from '../Pages/Login/Login';

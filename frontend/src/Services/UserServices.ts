@@ -8,6 +8,7 @@ class UserService {
       name: firebaseUser.displayName as string,
       email: firebaseUser.email as string,
       photoUrl: firebaseUser.photoURL as string,
+      isLoaded: true,
     };
     return user;
   }

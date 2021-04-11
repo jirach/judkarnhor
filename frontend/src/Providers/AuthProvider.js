@@ -5,8 +5,9 @@ import React, { useState, useEffect } from 'react';
 import firebase from 'firebase';
 import { useHistory } from 'react-router-dom';
 import firebaseConfig from '../Firebase/firebaseIndex';
+import UserService from '../Services/UserServices';
 
-export const firebaseAuth = React.createContext();
+export const FirebaseAuth = React.createContext();
 
 const AuthProvider = (props) => {
   const history = useHistory();
@@ -14,13 +15,15 @@ const AuthProvider = (props) => {
   const [user, setUser] = useState(null);
 
   useEffect(() => firebase.auth().onAuthStateChanged((loggedInUser) => {
-    setUser(loggedInUser);
+    if (!user && loggedInUser) {
+      setUser(UserService.transformFirebaseUser(loggedInUser));
+    }
   }));
 
   const handleSignin = async () => {
     const googleProvider = new firebase.auth.GoogleAuthProvider();
     firebase.auth().signInWithPopup(googleProvider).then((res) => {
-      setUser(res.user);
+      setUser(UserService.transformFirebaseUser(res.user));
       history.push('/');
     }).catch((error) => {
       setErrors((prev) => ([...prev, error.message]));
@@ -37,12 +40,12 @@ const AuthProvider = (props) => {
   };
 
   return (
-    <firebaseAuth.Provider value={{
+    <FirebaseAuth.Provider value={{
       handleSignin, handleSignout, user, errors,
     }}
     >
       {props.children}
-    </firebaseAuth.Provider>
+    </FirebaseAuth.Provider>
   );
 };
 

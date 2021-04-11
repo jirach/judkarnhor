@@ -1,10 +1,10 @@
 /* eslint-disable react/no-unescaped-entities */
 import React, { useContext, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
-import { firebaseAuth } from '../../Providers/AuthProvider';
+import { FirebaseAuth } from '../../Providers/AuthProvider';
 
 const Login: React.FC = () => {
-  const { handleSignout, errors } = useContext(firebaseAuth);
+  const { handleSignout, errors } = useContext(FirebaseAuth);
   const history = useHistory();
 
   useEffect(() => {

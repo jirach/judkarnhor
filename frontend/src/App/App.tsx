@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Router, Switch } from 'react-router-dom';
 import firebase from 'firebase';
 import Dashboard from '../Pages/Dashboard/Dashboard';
@@ -14,12 +14,20 @@ import customHistory from '../Services/BrowserHistory';
 
 const App: React.FC = () => {
   const { user, setUser } = useContext(FirebaseAuth);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => firebase.auth().onAuthStateChanged((loggedInUser) => {
     if (!user && loggedInUser) {
       setUser(UserService.transformFirebaseUser(loggedInUser));
+      setLoading(false);
+    } else {
+      setLoading(false);
     }
-  }));
+  }), [user]);
+
+  if (loading) {
+    return <div>Loading</div>;
+  }
 
   return (
     <Router history={customHistory}>

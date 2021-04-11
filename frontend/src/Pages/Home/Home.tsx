@@ -1,17 +1,9 @@
-import React, { useContext } from 'react';
-import { FirebaseAuth } from '../../Providers/AuthProvider';
+import React from 'react';
 
-const Home: React.FC = () => {
-  const { user } = useContext(FirebaseAuth);
-
-  return (
-    <div>
-      Home
-      Hello,
-      {' '}
-      {user ? <p>{user.name}</p> : <p>who are you?</p>}
-    </div>
-  );
-};
+const Home: React.FC = () => (
+  <div>
+    Home
+  </div>
+);
 
 export default Home;

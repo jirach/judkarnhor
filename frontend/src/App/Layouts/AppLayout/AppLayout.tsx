@@ -159,6 +159,12 @@ const AppLayout: React.FC = ({ children }) => {
             </ListItemIcon>
             <ListItemText primary="Login" />
           </ListItem>
+          <ListItem button component={Link} to="/logout">
+            <ListItemIcon>
+              <ShoppingCartIcon />
+            </ListItemIcon>
+            <ListItemText primary="Logout" />
+          </ListItem>
         </List>
       </Drawer>
       <main className={classes.content}>

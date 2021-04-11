@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import {
   BrowserRouter as Router, Switch,
 } from 'react-router-dom';
@@ -8,25 +8,20 @@ import Login from '../Pages/Login/Login';
 import AppLayout from './Layouts/AppLayout/AppLayout';
 import AppRoute from './Layouts/AppRoute';
 import LoginLayout from './Layouts/LoginLayout/LoginLayout';
-import { firebaseAuth } from '../Providers/AuthProvider';
-import SignUp from '../Components/SingUp';
-import SignIn from '../Components/SignIn';
+import Logout from '../Pages/Logout/Logout';
+import AuthProvider from '../Providers/AuthProvider';
 
-const App: React.FC = () => {
-  const { handleSignup } = useContext(firebaseAuth);
-  console.log(handleSignup);
-
-  return (
-    <Router>
+const App: React.FC = () => (
+  <Router>
+    <AuthProvider>
       <Switch>
         <AppRoute exact path="/" layout={AppLayout} component={Home} />
         <AppRoute exact path="/login" layout={LoginLayout} component={Login} />
-        <AppRoute exact path="/signup" layout={LoginLayout} component={SignUp} />
-        <AppRoute exact path="/signin" layout={LoginLayout} component={SignIn} />
+        <AppRoute exact path="/logout" layout={LoginLayout} component={Logout} />
         <AppRoute exact path="/dashboard" layout={AppLayout} component={Dashboard} />
       </Switch>
-    </Router>
-  );
-};
+    </AuthProvider>
+  </Router>
+);
 
 export default App;

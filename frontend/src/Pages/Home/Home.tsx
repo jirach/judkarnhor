@@ -3,12 +3,14 @@ import React, { useContext } from 'react';
 import { firebaseAuth } from '../../Providers/AuthProvider';
 
 const Home: React.FC = () => {
-  const { signout } = useContext(firebaseAuth);
+  const { user } = useContext(firebaseAuth);
 
   return (
     <div>
-      Home, login successful!!!!!!
-      <Button onClick={signout}>sign out </Button>
+      Home
+      Hello,
+      {' '}
+      {user ? <p>Logged In User</p> : <p>who are you?</p>}
     </div>
   );
 };

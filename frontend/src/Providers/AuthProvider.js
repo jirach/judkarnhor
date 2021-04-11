@@ -1,34 +1,44 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
 /* eslint-disable react/destructuring-assignment */
-import React, { useState } from 'react';
-import authMethods from '../Firebase/authMethods';
+import React, { useState, useEffect } from 'react';
+import firebase from 'firebase';
+import { useHistory } from 'react-router-dom';
+import firebaseConfig from '../Firebase/firebaseIndex';
 
 export const firebaseAuth = React.createContext();
 
 const AuthProvider = (props) => {
-  const [inputs, setInputs] = useState({ email: '', password: '' });
+  const history = useHistory();
   const [errors, setErrors] = useState([]);
-  const [token, setToken] = useState(null);
+  const [user, setUser] = useState(null);
 
-  const handleSignup = () => {
-    console.log('handleSignup');
-    authMethods.signup(inputs.email, inputs.password, setErrors, setToken);
-    console.log(errors);
-  };
+  useEffect(() => firebase.auth().onAuthStateChanged((loggedInUser) => {
+    setUser(loggedInUser);
+  }));
 
-  const handleSignin = () => {
-    console.log('handleSignin!!!!');
-    authMethods.signin(inputs.email, inputs.password, setErrors, setToken);
-    console.log(errors, token);
+  const handleSignin = async () => {
+    const googleProvider = new firebase.auth.GoogleAuthProvider();
+    firebase.auth().signInWithPopup(googleProvider).then((res) => {
+      setUser(res.user);
+      history.push('/');
+    }).catch((error) => {
+      setErrors((prev) => ([...prev, error.message]));
+    });
   };
 
   const handleSignout = () => {
-    authMethods.signout();
+    firebase.auth().signOut().then((res) => {
+      setUser(null);
+    })
+      .catch((err) => {
+        setErrors((prev) => ([...prev, err.message]));
+      });
   };
 
   return (
     <firebaseAuth.Provider value={{
-      handleSignup, handleSignin, handleSignout, inputs, setInputs, errors,
+      handleSignin, handleSignout, user, errors,
     }}
     >
       {props.children}

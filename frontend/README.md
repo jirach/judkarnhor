@@ -1,4 +1,7 @@
 # Jud Karn Hor
 
 [x] Add layouts
-[ ] Add material theme
+[x] Add material theme
+[ ] Firebase auth
+    - npm install --save firebase
+    - npm i @react-firebase/auth

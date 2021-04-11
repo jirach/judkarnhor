@@ -2,10 +2,10 @@
 /* eslint-disable react/prop-types */
 import React, { useContext } from 'react';
 import { Redirect, Route } from 'react-router-dom';
-import { FirebaseAuth } from '../../Providers/AuthProvider';
+import { AppContext } from '../../Providers/AppProvider';
 
 const AppRoute = ({ component: Component, layout: Layout, ...rest }: any) => {
-  const { user } = useContext(FirebaseAuth);
+  const { user } = useContext(AppContext);
 
   if ((user && user.isLoaded) || !rest.needAuthen) {
     return (

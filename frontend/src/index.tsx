@@ -5,14 +5,14 @@ import { ThemeProvider } from '@material-ui/core/styles';
 import App from './App/App';
 import theme from './theme';
 import reportWebVitals from './reportWebVitals';
-import AuthProvider from './Providers/AuthProvider';
+import AppProvider from './Providers/AppProvider';
 
 ReactDOM.render(
   <ThemeProvider theme={theme}>
     <CssBaseline />
-    <AuthProvider>
+    <AppProvider>
       <App />
-    </AuthProvider>
+    </AppProvider>
   </ThemeProvider>,
   document.getElementById('root'),
 );

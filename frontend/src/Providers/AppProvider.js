@@ -9,11 +9,12 @@ import firebaseConfig from '../Firebase/firebaseIndex';
 import UserService from '../Services/UserServices';
 import customHistory from '../Services/BrowserHistory';
 
-export const FirebaseAuth = React.createContext();
+export const AppContext = React.createContext();
 
-const AuthProvider = (props) => {
+const AppProvider = (props) => {
   const [errors, setErrors] = useState([]);
   const [user, setUser] = useState(null);
+  const [title, setTitle] = useState('Jud Karn Hor');
 
   const handleSignin = async () => {
     const googleProvider = new firebase.auth.GoogleAuthProvider();
@@ -35,13 +36,13 @@ const AuthProvider = (props) => {
   };
 
   return (
-    <FirebaseAuth.Provider value={{
-      handleSignin, handleSignout, user, setUser, errors,
+    <AppContext.Provider value={{
+      handleSignin, handleSignout, user, setUser, errors, title, setTitle,
     }}
     >
       {props.children}
-    </FirebaseAuth.Provider>
+    </AppContext.Provider>
   );
 };
 
-export default AuthProvider;
+export default AppProvider;

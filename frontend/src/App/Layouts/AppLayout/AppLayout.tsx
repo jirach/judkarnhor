@@ -1,7 +1,7 @@
 /* eslint-disable react/destructuring-assignment */
 /* eslint-disable react/require-default-props */
 /* eslint-disable react/prop-types */
-import React from 'react';
+import React, { useContext } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Drawer from '@material-ui/core/Drawer';
@@ -12,12 +12,17 @@ import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
+import HomeIcon from '@material-ui/icons/Home';
+import ApartmentIcon from '@material-ui/icons/Apartment';
+import AssessmentIcon from '@material-ui/icons/Assessment';
+import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import {
   Hidden,
   ListItem, ListItemIcon, ListItemText, useTheme,
 } from '@material-ui/core';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import { AppContext } from '../../../Providers/AppProvider';
 
 const drawerWidth = 240;
 
@@ -59,6 +64,7 @@ const AppLayout: React.FC = (props: any) => {
   const classes = useStyles();
   const theme = useTheme();
   const [mobileOpen, setMobileOpen] = React.useState(false);
+  const { title } = useContext(AppContext);
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
@@ -71,25 +77,26 @@ const AppLayout: React.FC = (props: any) => {
       <List>
         <ListItem button component={Link} to="/">
           <ListItemIcon>
-            <MenuIcon />
+            <HomeIcon />
           </ListItemIcon>
           <ListItemText primary="Home" />
         </ListItem>
-        <ListItem button component={Link} to="/dashboard">
+        <ListItem button component={Link} to="/building">
           <ListItemIcon>
-            <MenuIcon />
+            <ApartmentIcon />
           </ListItemIcon>
-          <ListItemText primary="Dashboard" />
+          <ListItemText primary="Buildings" />
         </ListItem>
-        <ListItem button component={Link} to="/login">
+        <ListItem button component={Link} to="/report">
           <ListItemIcon>
-            <MenuIcon />
+            <AssessmentIcon />
           </ListItemIcon>
-          <ListItemText primary="Login" />
+          <ListItemText primary="Reports" />
         </ListItem>
+        <Divider />
         <ListItem button component={Link} to="/logout">
           <ListItemIcon>
-            <MenuIcon />
+            <ExitToAppIcon />
           </ListItemIcon>
           <ListItemText primary="Logout" />
         </ListItem>
@@ -114,7 +121,7 @@ const AppLayout: React.FC = (props: any) => {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" noWrap>
-            Responsive drawer
+            {title}
           </Typography>
         </Toolbar>
       </AppBar>

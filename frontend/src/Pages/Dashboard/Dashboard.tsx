@@ -1,8 +1,13 @@
-import React, { useContext } from 'react';
-import { FirebaseAuth } from '../../Providers/AuthProvider';
+import React, { useContext, useEffect } from 'react';
+import { AppContext } from '../../Providers/AppProvider';
 
 const Dashboard: React.FC = () => {
-  const { user } = useContext(FirebaseAuth);
+  const { user, title, setTitle } = useContext(AppContext);
+
+  useEffect(() => {
+    setTitle('Dashboard');
+  }, [title]);
+
   return (
     <div>
       Dashboard Page,

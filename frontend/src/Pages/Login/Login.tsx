@@ -5,7 +5,7 @@ import Button from '@material-ui/core/Button';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
-import { FirebaseAuth } from '../../Providers/AuthProvider';
+import { AppContext } from '../../Providers/AppProvider';
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -28,7 +28,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const Login: React.FC = () => {
-  const { handleSignin, errors } = useContext(FirebaseAuth);
+  const { handleSignin, errors } = useContext(AppContext);
   const classes = useStyles();
 
   const handleSubmit = async (e: any) => {

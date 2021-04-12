@@ -1,5 +1,16 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
+# Compiled JavaScript files
+backend/functions/lib/**/*.js
+backend/functions/lib/**/*.js.map
+
+# TypeScript v1 declaration files
+backend/functions/typings/
+
+# Node.js dependency directory
+backend/functions/node_modules/
+
+
 # dependencies
 frontend/node_modules
 frontend/.pnp

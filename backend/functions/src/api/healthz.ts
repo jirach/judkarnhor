@@ -1,10 +1,12 @@
 import * as functions from 'firebase-functions';
 import * as express from 'express';
-import {Application} from 'express';
+import * as cors from 'cors';
+import auth from '../utils/auth';
 
 // Initiate function
 const functionBuilder = functions.region('asia-east2').https;
-const api: Application = express();
+const api: express.Application = express();
+api.use(cors({origin: true}));
 
 // API Endpoints
 api.get('/', (request:functions.Request, response: functions.Response) => {
@@ -15,8 +17,10 @@ api.get('/one', (request:functions.Request, response: functions.Response) => {
   response.send('Hello from Firebase 1');
 });
 
-api.get('/two', (request:functions.Request, response: functions.Response) => {
+api.get('/auth', auth, (request:functions.Request, response: functions.Response) => {
   response.send('Hello from Firebase 2');
 });
 
-export const healthz = functionBuilder.onRequest(api);
+// Export module
+const healthz = functionBuilder.onRequest(api);
+export default healthz;

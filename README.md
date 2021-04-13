@@ -9,6 +9,24 @@
 [ ] call firebase from react with authen
 
 
+## DB
+
+### user
+- id: string
+- name: string
+- email: string
+- photoUrl: string
+
+### management group
+- id: string
+- name: string
+- buildings: [ids]
+
+### buildings
+- id
+- name
+
+
 ## How to debug firebase
 - export GOOGLE_APPLICATION_CREDENTIALS=~/Dev/jud-karn-hor/backend/firebasekey/jud-karn-hor-bb8399840877.json 
 - npm run build:watch

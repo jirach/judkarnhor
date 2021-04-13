@@ -26,5 +26,6 @@ module.exports = {
   rules: {
     'quotes': ['error', 'single'],
     'max-len': 'off',
+    '@typescript-eslint/explicit-module-boundary-types': 'off',
   },
 };

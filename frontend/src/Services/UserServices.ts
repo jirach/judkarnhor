@@ -4,7 +4,7 @@ import { IUser } from '../type.d';
 class UserService {
   static transformFirebaseUser = (firebaseUser: any): IUser => {
     const user: IUser = {
-      userid: firebaseUser.uid,
+      id: firebaseUser.uid,
       name: firebaseUser.displayName as string,
       email: firebaseUser.email as string,
       photoUrl: firebaseUser.photoURL as string,
@@ -27,10 +27,8 @@ class UserService {
 
   static createIfNotExist = (user: IUser) => {
     axios
-      .post(`${process.env.REACT_APP_API_URL}/createIfNotExist`, user)
-      .then((response) => {
-        console.log('OK', response);
-      })
+      .post(`${process.env.REACT_APP_API_URL}/user/createIfNotExist`, user)
+      .then((response) => response.data)
       .catch((error) => {
         console.log('error', error);
       });

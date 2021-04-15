@@ -18,9 +18,20 @@ const AppProvider = (props) => {
   const handleSignin = async () => {
     const googleProvider = new firebase.auth.GoogleAuthProvider();
     firebase.auth().signInWithPopup(googleProvider).then((res) => {
-      setUser(UserService.transformFirebaseUser(res.user));
-      UserService.createIfNotExist(user);
-      customHistory.push('/');
+      // Success authen with firebase
+      let loggedInUser = UserService.transformFirebaseUser(res.user);
+      setUser(loggedInUser);
+
+      // Create app user
+      loggedInUser = UserService.createIfNotExist(loggedInUser);
+      setUser(loggedInUser);
+
+      // Route user
+      if (!loggedInUser.managementGrouop) {
+        customHistory.push('/myProfile');
+      } else {
+        customHistory.push('/');
+      }
     }).catch((error) => {
       setErrors((prev) => ([...prev, error.message]));
     });

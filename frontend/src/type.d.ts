@@ -4,6 +4,7 @@ export interface IUser {
     email: string,
     photoUrl: string,
     isLoaded: boolean,
+    token: string,
 }
 
 export type AuthContextProp = {

@@ -19,6 +19,7 @@ const AppProvider = (props) => {
     const googleProvider = new firebase.auth.GoogleAuthProvider();
     firebase.auth().signInWithPopup(googleProvider).then((res) => {
       setUser(UserService.transformFirebaseUser(res.user));
+      UserService.createIfNotExist(user);
       customHistory.push('/');
     }).catch((error) => {
       setErrors((prev) => ([...prev, error.message]));

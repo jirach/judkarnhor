@@ -8,7 +8,9 @@ class UserService {
       name: firebaseUser.displayName as string,
       email: firebaseUser.email as string,
       photoUrl: firebaseUser.photoURL as string,
-      isLoaded: true,
+      isAdmin: false,
+      isAuthenticated: true,
+      isLoaded: false,
       token: firebaseUser.za,
     };
     // Save token in local storage
@@ -25,13 +27,14 @@ class UserService {
     return newUser;
   }
 
-  static createIfNotExist = (user: IUser) => {
-    axios
+  static createIfNotExist = async (user: IUser) => {
+    const response: any = await axios
       .post(`${process.env.REACT_APP_API_URL}/user/createIfNotExist`, user)
-      .then((response) => response.data)
       .catch((error) => {
         console.log('error', error);
       });
+
+    return response.data;
   }
 }
 

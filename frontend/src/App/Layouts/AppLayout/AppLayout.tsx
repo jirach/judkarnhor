@@ -64,7 +64,7 @@ const AppLayout: React.FC = (props: any) => {
   const classes = useStyles();
   const theme = useTheme();
   const [mobileOpen, setMobileOpen] = React.useState(false);
-  const { title } = useContext(AppContext);
+  const { user, title } = useContext(AppContext);
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
@@ -93,6 +93,19 @@ const AppLayout: React.FC = (props: any) => {
           </ListItemIcon>
           <ListItemText primary="Reports" />
         </ListItem>
+        { user.isAdmin
+          ? (
+            <>
+              <Divider />
+              <ListItem button component={Link} to="/admin">
+                <ListItemIcon>
+                  <HomeIcon />
+                </ListItemIcon>
+                <ListItemText primary="Admin" />
+              </ListItem>
+            </>
+          )
+          : <>{console.log(user)}</>}
         <Divider />
         <ListItem button component={Link} to="/logout">
           <ListItemIcon>
@@ -161,78 +174,10 @@ const AppLayout: React.FC = (props: any) => {
         { props.children }
       </main>
     </div>
-
-  // <div className={classes.root}>
-  //   <CssBaseline />
-  //   <AppBar position="absolute" className={clsx(classes.appBar, open && classes.appBarShift)}>
-  //     <Toolbar className={classes.toolbar}>
-  //       <IconButton
-  //         edge="start"
-  //         color="inherit"
-  //         aria-label="open drawer"
-  //         onClick={handleDrawerOpen}
-  //         className={clsx(classes.menuButton, open && classes.menuButtonHidden)}
-  //       >
-  //         <MenuIcon />
-  //       </IconButton>
-  //       <Typography component="h1" variant="h6" color="inherit" noWrap className={classes.title}>
-  //         Dashboard
-  //       </Typography>
-  //     </Toolbar>
-  //   </AppBar>
-  //   <Drawer
-  //     variant="permanent"
-  //     classes={{
-  //       paper: clsx(classes.drawerPaper, !open && classes.drawerPaperClose),
-  //     }}
-  //     open={open}
-  //   >
-  //     <div className={classes.toolbarIcon}>
-  //       <IconButton onClick={handleDrawerClose}>
-  //         <ChevronLeftIcon />
-  //       </IconButton>
-  //     </div>
-  //     <Divider />
-  //     <List>
-  //       <ListItem button component={Link} to="/">
-  //         <ListItemIcon>
-  //           <DashboardIcon />
-  //         </ListItemIcon>
-  //         <ListItemText primary="Home" />
-  //       </ListItem>
-  //       <ListItem button component={Link} to="/dashboard">
-  //         <ListItemIcon>
-  //           <DashboardIcon />
-  //         </ListItemIcon>
-  //         <ListItemText primary="Dashboard" />
-  //       </ListItem>
-  //       <ListItem button component={Link} to="/login">
-  //         <ListItemIcon>
-  //           <ShoppingCartIcon />
-  //         </ListItemIcon>
-  //         <ListItemText primary="Login" />
-  //       </ListItem>
-  //       <ListItem button component={Link} to="/logout">
-  //         <ListItemIcon>
-  //           <ShoppingCartIcon />
-  //         </ListItemIcon>
-  //         <ListItemText primary="Logout" />
-  //       </ListItem>
-  //     </List>
-  //   </Drawer>
-  //   <main className={classes.content}>
-  //     <div className={classes.appBarSpacer} />
-  //     { children }
-  //   </main>
-  // </div>
   );
 };
 
 AppLayout.propTypes = {
-  /**
-   * Injected by the documentation to work in an iframe.
-   * You won't need it on your project.
-   */
   window: PropTypes.func,
 };
 

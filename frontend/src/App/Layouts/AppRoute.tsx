@@ -7,7 +7,7 @@ import { AppContext } from '../../Providers/AppProvider';
 const AppRoute = ({ component: Component, layout: Layout, ...rest }: any) => {
   const { user } = useContext(AppContext);
 
-  if ((user && user.isLoaded) || !rest.needAuthen) {
+  if ((user && user.isAuthenticated) || !rest.needAuthen) {
     return (
       <Route
         {...rest}

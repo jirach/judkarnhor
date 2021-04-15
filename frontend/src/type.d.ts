@@ -3,7 +3,9 @@ export interface IUser {
     name: string,
     email: string,
     photoUrl: string,
+    isAdmin: boolean,
     isLoaded: boolean,
+    isAuthenticated: boolean,
     token: string,
 }
 

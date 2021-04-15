@@ -105,7 +105,7 @@ const AppLayout: React.FC = (props: any) => {
               </ListItem>
             </>
           )
-          : <>{console.log(user)}</>}
+          : <></>}
         <Divider />
         <ListItem button component={Link} to="/logout">
           <ListItemIcon>

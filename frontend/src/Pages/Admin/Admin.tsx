@@ -1,4 +1,5 @@
 import React, { useContext, useEffect } from 'react';
+import ManagementGroup from '../../Components/ManagementGroup/ManagementGroup';
 import { AppContext } from '../../Providers/AppProvider';
 
 const Admin: React.FC = () => {
@@ -10,9 +11,7 @@ const Admin: React.FC = () => {
 
   return (
     <div>
-      Welcome Admin
-      {' '}
-      {user.name}
+      <ManagementGroup />
     </div>
   );
 };

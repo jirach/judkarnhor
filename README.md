@@ -4,17 +4,16 @@
 
 ## DB
 
-### user
+### users
 - id: string
 - name: string
 - email: string
 - photoUrl: string
 - managementGrouop: [string]
 
-### management group
+### management-groups
 - id: string
 - name: string
-- buildings: [ids]
 
 ### buildings
 - id

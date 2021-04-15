@@ -40,13 +40,6 @@ const App: React.FC = () => {
     }
 
     setLoading(false);
-
-    // if (!user && firebaseUser) {
-    //   // Load authenticated user
-    //   const loggedInUser = UserService.transformFirebaseUser(firebaseUser);
-    //   setUser(loggedInUser);
-    //   setLoading(false);
-    // }
   }), [user]);
 
   // Show loading page

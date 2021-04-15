@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import {admin, db} from './admin';
+import {admin} from './admin';
 
 const auth = (request: any, response: any, next:any) => {
   let idToken;

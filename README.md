@@ -1,13 +1,6 @@
 # Jud Karn Hor
-
-[x] Add layouts
-[x] Add material theme
-[x] Firebase auth
-    - npm install --save firebase
-    - npm i @react-firebase/auth
-[ ] dummy firebase with authen
-[ ] call firebase from react with authen
-
+[ ] Create management group
+[ ] User profile page
 
 ## DB
 
@@ -16,6 +9,7 @@
 - name: string
 - email: string
 - photoUrl: string
+- managementGrouop: [string]
 
 ### management group
 - id: string

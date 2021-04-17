@@ -3,6 +3,7 @@ export interface IUser {
     name: string,
     email: string,
     photoUrl: string,
+    managementGroup?: IManagementGroup,
     isAdmin: boolean,
     isLoaded: boolean,
     isAuthenticated: boolean,

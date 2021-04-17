@@ -31,6 +31,10 @@ const createIfNotExist = async (request: functions.Request, response: functions.
 
 // Get specific user id -------------------------------------------------------
 const getUserById = async (request:functions.Request, response: functions.Response) => {
+  if (!request.params.id) {
+    return response.status(400).json({message: 'User id required'});
+  }
+
   const snapshot = await db.collection('user').doc(request.params.id).get();
   const user = snapshot.data();
 
@@ -41,8 +45,30 @@ const getUserById = async (request:functions.Request, response: functions.Respon
   }
 };
 
+// Add Management Group -------------------------------------------------------
+const setManagementGroup = async (request:functions.Request, response: functions.Response) => {
+  if (!request.params.id || !request.body.mgId || !request.body.mgName ) {
+    return response.status(400).json({message: 'User id, Management Group ID, and Management Group Name required'});
+  }
+
+  const mg = {
+    id: request.body.mgId,
+    name: request.body.mgName,
+  };
+
+  return db.collection('user').doc(request.params.id).update({managementGroup: mg})
+      .then(() => {
+        response.status(201).json(mg);
+      })
+      .catch((error) => {
+        console.log(error);
+        response.status(500).json({message: 'Error updating user management group'});
+      });
+};
+
 // Export ---------------------------------------------------------------------
 export {
   createIfNotExist,
   getUserById,
+  setManagementGroup,
 };

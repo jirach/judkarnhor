@@ -18,6 +18,7 @@ api.get('/healthz', healthz.echoHealthz);
 // User APIs ------------------------------------------------------------------
 api.get('/user/:id', user.getUserById);
 api.post('/user/createIfNotExist', user.createIfNotExist);
+api.post('/user/:id/managementGroup', user.setManagementGroup);
 
 // Management Group APIs ------------------------------------------------------
 api.get('/managementGroup', mg.getAllManagementGroup);

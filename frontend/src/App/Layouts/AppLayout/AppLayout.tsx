@@ -2,6 +2,7 @@
 /* eslint-disable react/require-default-props */
 /* eslint-disable react/prop-types */
 import React, { useContext } from 'react';
+import { useHistory, Link } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Drawer from '@material-ui/core/Drawer';
@@ -17,10 +18,11 @@ import ApartmentIcon from '@material-ui/icons/Apartment';
 import AssessmentIcon from '@material-ui/icons/Assessment';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import {
+  Avatar,
   Hidden,
   ListItem, ListItemIcon, ListItemText, useTheme,
 } from '@material-ui/core';
-import { Link } from 'react-router-dom';
+
 import PropTypes from 'prop-types';
 import { AppContext } from '../../../Providers/AppProvider';
 
@@ -57,14 +59,18 @@ const useStyles = makeStyles((theme) => ({
     flexGrow: 1,
     padding: theme.spacing(3),
   },
+  title: {
+    flexGrow: 1,
+  },
 }));
 
 const AppLayout: React.FC = (props: any) => {
   const { window } = props;
   const classes = useStyles();
   const theme = useTheme();
-  const [mobileOpen, setMobileOpen] = React.useState(false);
   const { user, title } = useContext(AppContext);
+  const history = useHistory();
+  const [mobileOpen, setMobileOpen] = React.useState(false);
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
@@ -133,9 +139,20 @@ const AppLayout: React.FC = (props: any) => {
           >
             <MenuIcon />
           </IconButton>
-          <Typography variant="h6" noWrap>
+          <Typography variant="h6" className={classes.title} noWrap>
             {title}
           </Typography>
+          <div>
+            <IconButton
+              aria-label="account of current user"
+              aria-controls="menu-appbar"
+              aria-haspopup="true"
+              color="inherit"
+              onClick={() => history.push('/myProfile')}
+            >
+              <Avatar alt={`${user.name}`} src={`${user.photoUrl}`} />
+            </IconButton>
+          </div>
         </Toolbar>
       </AppBar>
       <nav className={classes.drawer} aria-label="mailbox folders">

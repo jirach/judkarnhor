@@ -1,6 +1,5 @@
 # Jud Karn Hor
-[ ] Create management group
-[ ] User profile page
+[ ] Building
 
 ## DB
 
@@ -9,7 +8,7 @@
 - name: string
 - email: string
 - photoUrl: string
-- managementGrouop: [string]
+- managementGrouop: [{IManagementGroup}]
 
 ### management-groups
 - id: string
@@ -17,7 +16,11 @@
 
 ### buildings
 - id
+- managementGroup
 - name
+- (sub collection) Room
+
+### rooms
 
 
 ## How to debug firebase

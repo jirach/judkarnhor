@@ -26,6 +26,7 @@ class MGService {
     } catch (error) {
       res.status = error.request.status;
       res.data = error.response.data.message;
+      throw (res);
     }
     return res;
   }
@@ -53,6 +54,7 @@ class MGService {
     } catch (error) {
       res.status = error.request.status;
       res.data = error.response.data.message;
+      throw (res);
     }
     return res;
   }

@@ -9,6 +9,11 @@ export interface IUser {
     token: string,
 }
 
+export interface IManagementGroup {
+    id?: string,
+    name: string,
+}
+
 export type AuthContextProp = {
     handleSignin: {},
     handleSignout: {},

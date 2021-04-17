@@ -40,7 +40,7 @@ const App: React.FC = () => {
     }
 
     setLoading(false);
-  }), [user]);
+  }), []);
 
   // Show loading page
   if (loading) {

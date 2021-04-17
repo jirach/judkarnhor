@@ -16,6 +16,7 @@
     "clsx": "^1.1.1",
     "firebase": "^8.3.3",
     "history": "^4.10.1",
+    "material-table": "^1.69.2",
     "node-sass": "^5.0.0",
     "prop-types": "^15.7.2",
     "react": "^17.0.2",

@@ -17,12 +17,11 @@ const createManagementGroup = async (request:functions.Request, response: functi
   }
 
   // Check if management group exist
-  // TODO somthing wrong around this line as it get stuck
-  // const snapshot = await db.collection('management-groups')
-  //     .where('name', '==', request.body.name)
-  //     .limit(1)
-  //     .get();
-  // if (snapshot.size > 0) return response.status(409);
+  const snapshot = await db.collection('management-groups')
+      .where('name', '==', request.body.name)
+      .limit(1)
+      .get();
+  if (snapshot.size > 0) return response.status(400).json({message: 'Management group already exist'});
 
   return db.collection('management-groups').add({
     name: request.body.name,

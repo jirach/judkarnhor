@@ -31,7 +31,10 @@ class UserService {
   static createIfNotExist = async (user: IUser) => {
     const res = <IHTTPResponse>{};
     try {
-      const api: AxiosResponse = await axios.post(`${process.env.REACT_APP_API_URL}/user/createIfNotExist`, user);
+      const userToCreate = user;
+      userToCreate.photoUrl = user.photoUrl.replace('s96-c', 's400-c');
+
+      const api: AxiosResponse = await axios.post(`${process.env.REACT_APP_API_URL}/user/createIfNotExist`, userToCreate);
       res.status = api.status;
       res.data = api.data;
     } catch (error) {

@@ -25,6 +25,7 @@ const useStyles = makeStyles((theme) => ({
   },
   profilePic: {
     borderRadius: '50%',
+    maxWidth: '200px',
   },
 }));
 

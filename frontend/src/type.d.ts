@@ -14,6 +14,11 @@ export interface IManagementGroup {
     name: string,
 }
 
+export interface IHTTPResponse {
+    status: number,
+    data: any,
+}
+
 export type AuthContextProp = {
     handleSignin: {},
     handleSignout: {},

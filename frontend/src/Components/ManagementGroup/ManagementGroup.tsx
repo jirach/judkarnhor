@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import MaterialTable from 'material-table';
+import MaterialTable, { MTableToolbar } from 'material-table';
+import Alert from '@material-ui/lab/Alert';
 import MGService from '../../Services/MGServices';
 import { IManagementGroup } from '../../type.d';
 
@@ -9,10 +10,11 @@ const columns = [
 
 const ManagementGroup: React.FC = () => {
   const [mg, setMg] = useState<IManagementGroup[]>([]);
+  const [error, setError] = useState('');
 
   const getManagementGroup = async () => {
-    const mgNew = await MGService.getAllManagementGroup();
-    setMg(mgNew);
+    const response = await MGService.getAllManagementGroup();
+    setMg(response.data);
   };
 
   useEffect(() => {
@@ -24,14 +26,25 @@ const ManagementGroup: React.FC = () => {
       title="Management Groups"
       columns={columns}
       data={mg}
+      components={{
+        Toolbar: (props) => (
+          <div>
+            <MTableToolbar {...props} />
+            { error.length > 0 && <Alert severity="error" onClose={() => { setError(''); }}>{error}</Alert>}
+          </div>
+        ),
+      }}
       editable={{
         onRowAdd: (newData: any) => {
           const newMg: IManagementGroup = {
             name: newData.name,
           };
           return MGService.createManagementGroup(newMg)
-            .then((data) => {
-              setMg([...mg, data]);
+            .then((response) => {
+              setMg([...mg, response.data]);
+            })
+            .catch((response) => {
+              setError(response.data);
             });
         },
         onRowUpdate: (newData: any, oldData: any) => {

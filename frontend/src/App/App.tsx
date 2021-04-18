@@ -16,6 +16,7 @@ import Report from '../Pages/Report/Report';
 import Admin from '../Pages/Admin/Admin';
 import { IUser } from '../type.d';
 import MyProfile from '../Pages/MyProfile/MyProfile';
+import CreateBuilding from '../Pages/Building/CreateBuilding';
 
 const App: React.FC = () => {
   const { user, setUser } = useContext(AppContext);
@@ -61,6 +62,7 @@ const App: React.FC = () => {
         <AppRoute exact path="/" needAuthen layout={AppLayout} component={Dashboard} />
         <AppRoute exact path="/dashboard" needAuthen layout={AppLayout} component={Dashboard} />
         <AppRoute exact path="/building" needAuthen layout={AppLayout} component={Building} />
+        <AppRoute exact path="/building/create" needAuthen layout={AppLayout} component={CreateBuilding} />
         <AppRoute exact path="/report" needAuthen layout={AppLayout} component={Report} />
         <AppRoute exact path="/admin" needAuthen layout={AppLayout} component={Admin} />
         <AppRoute exact path="/myProfile" needAuthen layout={AppLayout} component={MyProfile} />

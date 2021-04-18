@@ -6,6 +6,7 @@ backend/functions/lib/**/*.js
 backend/functions/lib/**/*.js.map
 backend/functions/typings/
 backend/functions/node_modules/
+backend/env.json
 
 # Frontend
 frontend/node_modules

@@ -1,20 +1,19 @@
+import { Grid, Paper } from '@material-ui/core';
 import React, { useContext, useEffect } from 'react';
-import { Link } from 'react-router-dom';
 import { AppContext } from '../../Providers/AppProvider';
 
-const Building: React.FC = () => {
+const CreateBuilding: React.FC = () => {
   const { title, setTitle } = useContext(AppContext);
 
   useEffect(() => {
-    setTitle('Buildings');
+    setTitle('Buildings - Create');
   }, [title]);
 
   return (
-    <div>
-      Building
-      <Link to="/building/create">Create</Link>
-    </div>
+    <Paper>
+      <Grid container />
+    </Paper>
   );
 };
 
-export default Building;
+export default CreateBuilding;

@@ -21,7 +21,9 @@
 - (sub collection) Room
 
 ### rooms
-
+- id
+- buildingId
+- managementGroup
 
 ## How to debug firebase
 - export GOOGLE_APPLICATION_CREDENTIALS=~/Dev/jud-karn-hor/backend/firebasekey/jud-karn-hor-bb8399840877.json 

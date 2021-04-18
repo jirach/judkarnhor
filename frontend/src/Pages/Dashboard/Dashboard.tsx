@@ -1,4 +1,5 @@
 import React, { useContext, useEffect } from 'react';
+import BuildingList from '../../Components/BuildingList/BuildingList';
 import { AppContext } from '../../Providers/AppProvider';
 
 const Dashboard: React.FC = () => {
@@ -10,9 +11,7 @@ const Dashboard: React.FC = () => {
 
   return (
     <div>
-      Dashboard Page,
-      {' '}
-      {user.name}
+      <BuildingList managementGroupId="0yTsAe7OzDqFL9qFf3f0" />
     </div>
   );
 };

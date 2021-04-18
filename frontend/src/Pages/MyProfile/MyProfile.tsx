@@ -30,7 +30,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const MyProfile: React.FC = () => {
-  const { user, title, setTitle } = useContext(AppContext);
+  const { user, setUser, setTitle } = useContext(AppContext);
   const classes = useStyles();
   const [managementGroup, setManagementGroup] = useState<IManagementGroup[]>([]);
   const [selectedManagementGroup, setSelectedManagementGroup] = useState('');
@@ -53,7 +53,11 @@ const MyProfile: React.FC = () => {
     const response = await UserService.updateManagementGroup(user.id, matchMG!);
     if (response.status >= 200 && response.status < 300) {
       setSuccessMessage('Management Group Updated');
-      setSelectedManagementGroup(response.data.id);
+      setSelectedManagementGroup(matchMG?.id!);
+      // Update user context
+      const updateUser = user;
+      updateUser.managementGroup = matchMG;
+      setUser(updateUser);
     } else {
       setErrorMessage('Management Group cannot be update');
     }

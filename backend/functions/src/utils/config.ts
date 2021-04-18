@@ -1,5 +1,8 @@
+import * as functions from 'firebase-functions';
+const config = functions.config().env;
+
 const firebaseConfig = {
-  apiKey: 'AIzaSyDxPDU2VjtOX1vGrI9MbCUCEHMIZ3T3MMI',
+  apiKey: config.firebase.apiKey,
   authDomain: 'jud-karn-hor.firebaseapp.com',
   projectId: 'jud-karn-hor',
   storageBucket: 'jud-karn-hor.appspot.com',

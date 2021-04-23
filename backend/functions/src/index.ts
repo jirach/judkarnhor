@@ -5,6 +5,7 @@ import auth from './utils/auth';
 import * as user from './api/user';
 import * as mg from './api/managementGroup';
 import * as healthz from './api/healthz';
+import * as building from './api/building';
 
 // Initiate function ----------------------------------------------------------
 const functionBuilder = functions.region('asia-east2').https;
@@ -25,6 +26,9 @@ api.get('/managementGroup', mg.getAllManagementGroup);
 api.post('/managementGroup', mg.createManagementGroup);
 api.put('/managementGroup', mg.changeManagementGroup);
 api.delete('/managementGroup/:id', mg.deleteManagementGroup);
+
+// Building -------------------------------------------------------------------
+api.post('/building', building.createBuilding);
 
 // APIs
 exports.api = functionBuilder.onRequest(api);

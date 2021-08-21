@@ -7,7 +7,7 @@ import SaveIcon from '@material-ui/icons/Save';
 import Alert from '@material-ui/lab/Alert';
 import { AppContext } from '../../Providers/AppProvider';
 import MGService from '../../Services/MGServices';
-import { IManagementGroup } from '../../type.d';
+import { IManagementGroup } from '../../../../shared/type.d';
 import UserService from '../../Services/UserServices';
 
 const useStyles = makeStyles((theme) => ({

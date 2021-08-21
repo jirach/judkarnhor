@@ -28,6 +28,7 @@ api.put('/managementGroup', mg.changeManagementGroup);
 api.delete('/managementGroup/:id', mg.deleteManagementGroup);
 
 // Building -------------------------------------------------------------------
+api.get('/building/:id', building.getBuildingByManagementGroup);
 api.post('/building', building.createBuilding);
 
 // APIs

@@ -1,6 +1,6 @@
 import { AxiosResponse } from 'axios';
 import axios from './HttpService';
-import { IHTTPResponse, IManagementGroup } from '../type.d';
+import { IHTTPResponse, IManagementGroup } from '../../../shared/type.d';
 
 class MGService {
   static createManagementGroup = async (mg: IManagementGroup): Promise<IHTTPResponse> => {

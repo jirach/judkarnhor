@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import MaterialTable, { MTableToolbar } from 'material-table';
 import Alert from '@material-ui/lab/Alert';
 import MGService from '../../Services/MGServices';
-import { IManagementGroup } from '../../type.d';
+import { IManagementGroup } from '../../../../shared/type.d';
 
 const columns = [
   { title: 'Name', field: 'name' },

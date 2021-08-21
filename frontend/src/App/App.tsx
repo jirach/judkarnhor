@@ -14,7 +14,6 @@ import customHistory from '../Services/BrowserHistory';
 import Building from '../Pages/Building/Building';
 import Report from '../Pages/Report/Report';
 import Admin from '../Pages/Admin/Admin';
-import { IUser } from '../type.d';
 import MyProfile from '../Pages/MyProfile/MyProfile';
 import CreateBuilding from '../Pages/Building/CreateBuilding';
 

@@ -4,7 +4,7 @@
 import React, { useState } from 'react';
 import firebase from 'firebase/app';
 import 'firebase/auth';
-import firebaseConfig from '../Firebase/firebaseIndex';
+import firebaseConfig from '../Firebase/firebase';
 import UserService from '../Services/UserServices';
 import customHistory from '../Services/BrowserHistory';
 

@@ -1,6 +1,6 @@
 import { AxiosResponse } from 'axios';
 import axios from './HttpService';
-import { IHTTPResponse, IManagementGroup, IUser } from '../type.d';
+import { IHTTPResponse, IManagementGroup, IUser } from '../../../shared/type.d';
 
 class UserService {
   static transformFirebaseUser = (firebaseUser: any): IUser => {
@@ -17,7 +17,6 @@ class UserService {
     // Save token in local storage
     localStorage.setItem('token', user.token);
 
-    // TODO remove
     console.log(user.token);
     return user;
   }

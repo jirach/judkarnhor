@@ -4,6 +4,7 @@ import {
 import CloudUploadIcon from '@material-ui/icons/CloudUpload';
 import React, { useContext, useEffect, useState } from 'react';
 import { AppContext } from '../../Providers/AppProvider';
+import firebase from '../../Firebase/firebase';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -56,7 +57,30 @@ const CreateBuilding: React.FC = () => {
     setFileUrl(URL.createObjectURL(e.target.files[0]));
   };
 
-  const handleCreateBuilding = (e: any) => {
+  const uploadSelectedFile = (file: File) : Promise<any> => new Promise((resolve, reject) => {
+    // Prepare file name
+    const fileExtention = file.name.split('.').pop();
+    const filePath = `Building/${buildingName}.${fileExtention}`;
+
+    // Prepare firebase reference
+    const storageRef = firebase.storage().ref();
+    const buildingImageRef = storageRef.child(filePath);
+
+    // Upload
+    const uploadTask = buildingImageRef.put(file);
+    uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED, {
+      error: (error) => {
+        reject(error);
+      },
+      complete: () => {
+        uploadTask.snapshot.ref.getDownloadURL().then((downloadURL) => {
+          resolve(downloadURL);
+        });
+      },
+    });
+  });
+
+  const handleCreateBuilding = async (e: any) => {
     e.preventDefault();
 
     // Validation
@@ -66,8 +90,11 @@ const CreateBuilding: React.FC = () => {
     }
     setBuildingNameError(false);
 
+    const url = await uploadSelectedFile(selectedFile!);
+
     // Call API to create building
     console.log('creating building');
+    console.log(buildingName, selectedFile, fileUrl);
   };
 
   return (

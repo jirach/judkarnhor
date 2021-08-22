@@ -1,7 +1,10 @@
 import {db} from '../utils/admin';
-import {IBuilding} from '../../../../shared/type.d';
+import {IBuilding, IRoom} from '../../../../shared/type.d';
 
 class DataService {
+    //* ************************************************************************
+    // Building
+    //* ************************************************************************
     static getBuildingByManagementGroup = async (id: string): Promise<IBuilding[]> => {
       const buildings: IBuilding[] = [];
 
@@ -58,7 +61,7 @@ class DataService {
             })
             .catch((error) => {
               console.error('Error createBuilding: ', error);
-              reject(building);
+              reject(error);
             });
       });
     }
@@ -71,7 +74,7 @@ class DataService {
             })
             .catch((error) => {
               console.error('Error updateBuilding: ', error);
-              reject(building);
+              reject(error);
             });
       });
     }
@@ -84,6 +87,103 @@ class DataService {
             })
             .catch((error) => {
               console.error('Error deleteBuilding: ', error);
+              reject(error);
+            });
+      });
+    }
+
+    //* ************************************************************************
+    // Room
+    //* ************************************************************************
+    static createRoom = async (room: IRoom): Promise<IRoom> => {
+      return new Promise<IRoom>((resolve, reject) => {
+        db.collection('buildings').doc(room.buildingId).collection('rooms').add(room)
+            .then((obj) => {
+              room.id = obj.id;
+              resolve({...room});
+            })
+            .catch((error) => {
+              console.error('Error createRoom: ', error);
+              reject(error);
+            });
+      });
+    }
+
+    static isRoomExist = async (room: IRoom): Promise<boolean> => {
+      const snapshot = await db.collection('buildings').doc(room.buildingId).collection('rooms')
+          .where('floor', '==', room.floor)
+          .where('roomNumber', '==', room.roomNumber)
+          .limit(1)
+          .get();
+      if (snapshot.size > 0) {
+        return true;
+      } else {
+        return false;
+      }
+    }
+
+    static getRoomByBuilding = async (id: string): Promise<IRoom[]> => {
+      const snapshot = await db.collection('buildings')
+          .doc(id)
+          .collection('rooms')
+          .orderBy('floor')
+          .orderBy('roomNumber')
+          .get();
+
+      const rooms: IRoom[] = snapshot.docs.map((doc) => {
+        const room: IRoom = {
+          id: doc.id,
+          buildingId: doc.data().buildingId,
+          floor: doc.data().floor,
+          roomNumber: doc.data().roomNumber,
+        };
+        return room;
+      });
+      console.log(rooms);
+      return rooms;
+    }
+
+    static getRoomByBuildingAndFloor = async (id: string, floor: number): Promise<IRoom[]> => {
+      const snapshot = await db.collection('buildings')
+          .doc(id)
+          .collection('rooms')
+          .where('floor', '==', floor)
+          .orderBy('roomNumber')
+          .get();
+
+      const rooms: IRoom[] = snapshot.docs.map((doc) => {
+        const room: IRoom = {
+          id: doc.id,
+          buildingId: doc.data().buildingId,
+          floor: doc.data().floor,
+          roomNumber: doc.data().roomNumber,
+        };
+        return room;
+      });
+      return rooms;
+    }
+
+    static updateRoom = async (room: IRoom): Promise<IRoom> => {
+      return new Promise<IRoom>((resolve, reject) => {
+        db.collection('buildings').doc(room.buildingId).collection('rooms').doc(room.id as string).update(room)
+            .then(() => {
+              resolve(room);
+            })
+            .catch((error) => {
+              console.error('Error updateRoom: ', error);
+              reject(error);
+            });
+      });
+    }
+
+    static deleteRoom = async (building: string, id: string): Promise<boolean> => {
+      return new Promise<boolean>((resolve, reject) => {
+        db.collection('buildings').doc(building).collection('rooms').doc(id).delete()
+            .then(() => {
+              resolve(true);
+            })
+            .catch((error) => {
+              console.error('Error deleteRoom: ', error);
               reject(error);
             });
       });

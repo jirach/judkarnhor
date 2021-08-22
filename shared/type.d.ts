@@ -22,6 +22,13 @@ export interface IBuilding {
     imageUrl?: string,
 }
 
+export interface IRoom {
+    id?: string,
+    buildingId: string,
+    floor: number, 
+    roomNumber: number,
+}
+
 export interface IHTTPResponse {
     status: number,
     data: any,

@@ -6,6 +6,7 @@ import * as user from './api/user';
 import * as mg from './api/managementGroup';
 import * as healthz from './api/healthz';
 import * as building from './api/building';
+import * as room from './api/room';
 
 // Initiate function ----------------------------------------------------------
 const functionBuilder = functions.region('asia-east2').https;
@@ -32,6 +33,13 @@ api.get('/building/:id', building.getBuildingByManagementGroup);
 api.post('/building', building.createBuilding);
 api.put('/building', building.updateBuilding);
 api.delete('/building/:id', building.deleteBuilding);
+
+// Room -----------------------------------------------------------------------
+api.get('/room/:id', room.getRoomByBuilding);
+api.get('/room/:id/:floor', room.getRoomByBuildingAndFloor);
+api.post('/room', room.createRoom);
+api.put('/room', room.updateRoom);
+api.delete('/room/:building/:id', room.deleteRoom);
 
 // APIs
 exports.api = functionBuilder.onRequest(api);

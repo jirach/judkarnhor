@@ -35,7 +35,7 @@ const createManagementGroup = async (request:functions.Request, response: functi
       });
 };
 
-const changeManagementGroup = async (request:functions.Request, response: functions.Response) => {
+const updateManagementGroup = async (request:functions.Request, response: functions.Response) => {
   if (!request.body.id || !request.body.name ) {
     return response.status(400).json({message: 'Management group id & name required'});
   }
@@ -72,4 +72,9 @@ const deleteManagementGroup = async (request:functions.Request, response: functi
 };
 
 // Export ---------------------------------------------------------------------
-export {getAllManagementGroup, createManagementGroup, changeManagementGroup, deleteManagementGroup};
+export {
+  getAllManagementGroup,
+  createManagementGroup,
+  updateManagementGroup,
+  deleteManagementGroup,
+};

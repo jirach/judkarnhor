@@ -24,12 +24,14 @@ api.post('/user/:id/managementGroup', user.setManagementGroup);
 // Management Group APIs ------------------------------------------------------
 api.get('/managementGroup', mg.getAllManagementGroup);
 api.post('/managementGroup', mg.createManagementGroup);
-api.put('/managementGroup', mg.changeManagementGroup);
+api.put('/managementGroup', mg.updateManagementGroup);
 api.delete('/managementGroup/:id', mg.deleteManagementGroup);
 
 // Building -------------------------------------------------------------------
 api.get('/building/:id', building.getBuildingByManagementGroup);
 api.post('/building', building.createBuilding);
+api.put('/building', building.updateBuilding);
+api.delete('/building/:id', building.deleteBuilding);
 
 // APIs
 exports.api = functionBuilder.onRequest(api);

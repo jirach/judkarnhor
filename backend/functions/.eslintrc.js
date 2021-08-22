@@ -27,5 +27,8 @@ module.exports = {
     'quotes': ['error', 'single'],
     'max-len': 'off',
     '@typescript-eslint/explicit-module-boundary-types': 'off',
+    'require-jsdoc': 'off',
+    'valid-jsdoc': 'off',
+    'no-non-null-assertion': 'off',
   },
 };

@@ -15,6 +15,13 @@ export interface IManagementGroup {
     name: string,
 }
 
+export interface IBuilding {
+    id?: string,
+    managementGroup: IManagementGroup,
+    name: string,
+    imageUrl?: string,
+}
+
 export interface IHTTPResponse {
     status: number,
     data: any,

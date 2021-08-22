@@ -93,8 +93,6 @@ const CreateBuilding: React.FC = () => {
     const url = await uploadSelectedFile(selectedFile!);
 
     // Call API to create building
-    console.log('creating building');
-    console.log(buildingName, selectedFile, fileUrl);
   };
 
   return (
